@@ -1,0 +1,18 @@
+Searching for better names for legicash
+
+Reserve in: .com .net .org .cash .co *co.in
+
+Reserve on: google twitter reddit github gitlab medium facebook steemit instagram linkedin
+
+cash coin currency diamond ether gold money nom num or platinum sterling silver
+cyber digi dura goldi judi legi lexi mega micro nomi nomo plati
+bit byte card express fast flash or pay quick swift
+court ius judge juice jus just law lex
+
+AVAILABLE: airjus arbimatic argucoin autorflex balancoin cashjure cashjus cyberjuice cyberjus cyberlex durajus elecjuice elecjus ethercourt etherjuice etherjus etherlex expressjus financourt flexjus goldilex judicash judicoin judigi juice justitle legicash legicoin lexnum megajus mergenz mergenza nomocash noneico phamnuwen safejuice sumaatu supapowa swiftjus balancash
+NOPE: aircourt airjuice airlaw alphajuice anday anpay arbiter autor balancecoin bitcoinflash bitcourt bitflex bitpal bloodmoney bloodoranges blueback cashera cashrules cashyou coinjure coinjuror coinlex coinomatic cointrak commonjuice courtpay cyberjuice digicash digilex digimond digius durabit duracoin duralex elecash elecius elecourt elematic emergenz emergenza enlil ethercard etherflex fcash f.cash flex f-lex flexbit flexbyte flexcash flexcoin flexcourt flexero flexrule foocash foocoin forseti getsmart greenback greenfront greentop herojus iqcoin issitoq juice juicecoin juiceit juicepay juicero juicit juror jus jusdor jusdorange jusor jussur jussy justera justitia justoken justpay justpayit justpayoff klaatu lawcash lawcoin legibit lex lexor logibit logicash logicoin logigold logilex marduk megajuice megalex megapay microjus micropay nahundi nomcoin nomica nomical nomicoin nomik nomocoin nonico nuwen orflex orius orjus paganos pax paycourt payflex payitup payjust paysmart powa powaz powerjuice qengho quickbit rapidor reflex rjuice safecoin shitcoin shiva smaat solomoney sumatu supapowa superius superjus youcash zhenghe
+EXPENSIVE: bitcard cashiva coinjudge elecoin flexjuice judgecoin justits orangejus payjuice quickjuice rjus shezmu youcashit justits
+
+
+To sort one of the above lines in emacs, select the text then: C-u M-|
+zsh -c 'read A ; echo -n $(print -l $=A | sort -u)'
