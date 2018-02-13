@@ -1,8 +1,9 @@
 # Plan
 
-Identify the Skills & Time required for each part of the project
+Identify the Skills & Time required for each part of the project...
+to reach technological demo
 
-## Tasks
+## To Reach Technological Demo
 
 ### Logical Specification
 
@@ -88,12 +89,17 @@ Identify the Skills & Time required for each part of the project
   network expert (who provides communication primitives),
   front-end expert (who provides human interface),
   security expert (who prevents corners from being cut).
+
 * Can orchestrate the many underlying components to implement the overarching protocol.
 
 #### Skills
 
 * Good aesthetics in application development to keep complexity in check.
-* Discipline in writing all the tests.
+* Discipline in maintaining good code quality and writing all the tests.
+* Can use lower-level abstractions in non-leaky ways
+  to provide good abstractions to higher-level abstractions.
+* Possesses or can quickly acquire domain knowledge about cryptocurrency payments.
+* Can use OCaml (assuming Tezos), or to learn it, fast.
 
 #### Resources
 
@@ -104,23 +110,75 @@ Identify the Skills & Time required for each part of the project
 #### Description
 
 * Client interface for casual users
-* Management interface for the miners, payment processors, etc.
+* Management interface for the miners, underwriters, etc.
 
 #### Skills
 
-* Understand usability for end-users
+* Understand usability for end-users.
+* Understands web and/or mobile front-end technology (might require two people?)
 * Can talk with back-end guys, logicians, security experts
-* Can use OCaml (assuming Tezos), or learn fast.
+* Can use OCaml (assuming Tezos), or learn fast. (Using Ocaml to Javascript?)
 
 #### Resources
 
 * Full-time front-end expert
 
+### Release Engineering
+
+#### Description
+
+* Building and maintaining the software infrastructure.
+* Continuously build, test, deploy software.
+* Watch each step, detect failures, identify them, address them.
+* Ensure developers get timely feedback on failures, bugs are filed.
+* Use containers for deployment.
+* Keep software dependencies up-to-date, particularly watch security updates.
+* Work in interaction with all the rest of the team.
+
+#### Skills Required
+
+* Software plumbing: building great piping on good days, scrubbing them on bad days
+* High quality standards, yet ability to deal with bad software (decisively if needed).
+
+#### Resources
+
+* Part-time in the beginning, full-time as the team grows, one release engineer
+
+### Red Team
+
+#### Description
+
+* Break the system until it can't be broken.
+
+* Penetration testing, fudge testing, trying known attack vectors, designing new attacks,
+  reviewing code for errors, etc.
+
+* Work with the developers so they fix the problem and with the release engineer
+  so the problems remain fixed forever.
+
+* Teach discipline to developers, constraints to architects.
+
+#### Skills
+
+* Probably best done by alternating security consultants each addressing a variety of aspects
+  of security.
+
+#### Resources
+
+* Full-time senior network expert.
+* Full-time junior network expert.
+* Part-time logic expert.
+* Part-time compilation expert (little languages and their performance)
+* Part-time application expert.
+* Part-time network expert.
+
 ## All in all
+
+### To Reach Technological Demo
 
 * Full-time senior logic expert.
 * Full-time junior logic expert.
-* Full-time release engineer.
+* Part-time release engineer.
 * Part-time OCaml user expert.
 * Full-time application back-end expert.
 * Part-time domain expert.
@@ -128,3 +186,8 @@ Identify the Skills & Time required for each part of the project
 * Full-time interface front-end expert.
 * Full-time network expert.
 * Part-time security expert.
+
+### Beyond
+
+* Full-time language design.
+* Compilation expert full-time.
