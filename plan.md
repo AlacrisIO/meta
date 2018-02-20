@@ -191,3 +191,156 @@ to reach technological demo
 
 * Full-time language design.
 * Compilation expert full-time.
+
+## Design
+
+### Simplified Roles in the system
+
+Therefore, we can distinguish three kinds of actors, who each play several roles:
+* customer: viewer of many addresses, sender (going through facilitator), sometimes receiver (waiting for the consensus), lawyer (defending his interests).
+* merchant: viewer of many addresses (accounting), receiver (going through facilitator), sometimes sender (disbursing the funds eventually), lawyer (defending his interests), and entry point (helping customers connect to the very same network rather than a fork).
+* notary: facilitator (talking to both sender and receiver), gossiper (accepting data, pre-validating it, storing it, forwarding it), notary (partaking in the many phases of the consensus protocol), detective (watching side-chains for unreported violations, siccing the lawyer at offenders), lawyer (partaking in verification games), judge (maintaining accounts for everyone).
+
+Moreover, all roles share some basic functionality:
+connect to the network, validate and handle data, exchange messages, run the judge.
+
+
+### Common Software
+
+Resource estimates in (man)days for a first working version,
+assuming we fork some base coin rather than implement one from scratch.
+Properly debugged and documented is probably 3-10x more.
+
+
+#### Connect to the Network
+
+Short term:
+* Inherit functionality from the basic network we fork (0 days).
+
+Long term:
+* Users must be able to easily bootstrap their connection to the network
+  AND to make sure they use the same fork as the merchant or exchange,
+  in case there may be multiple forks.
+  We therefore want trusted clients that can connect based on
+  dynamic information opportunistically provided by peers-to-be.
+  (5 days to figure out how other peer-to-peer networks do it and reproduce whatever is best).
+* Handle subscriptions
+  (10 days to figure out the economics and implement the accounting).
+
+#### Validate the data
+
+Short term:
+* Write a schema for our specific kind of side-chain, together with a validating reader and writer,
+  and data accessors and generators
+  (3 days).
+* Minimally model some indexed "reference id" mechanism so lawsuits can find their data easily
+  and are not duplicated.
+
+Long term:
+* Design and implement a DSL for describing blockchain formats that is a good sublanguage
+  of our logic language for contracts, with which to describe our and other common blockchains
+  (20 days).
+* Extract `O(N ln N)` code for structural validation and indexing,
+  to be run by shared knowledge database, plus access code to be run by the judge
+  (10 days).
+* Find how to model a representation of the logic in itself, so lawsuits can reflectively
+  take into account previous lawsuits as affecting the state of the system
+  (20 days).
+
+
+#### Exchange Messages
+
+Short term:
+* Extend the base coin network protocol to exchange data for our side-chains
+  (3 days)
+* Implement some mechanism based on Lamport clocks (or hashgraph?)
+  to manage the state of all the side-chains in the gossip network and/or the consensus
+  (3 days)
+
+Long term:
+* Generalize the messaging protocol to recognize data describe by the DSL
+  and track structural completeness of fragments with a given schema
+  as prerequisite for publication as part of the consensus.
+  (6 days)
+
+
+#### Run The Judge
+
+Short term:
+* Put as much of the accounting logic directly for the our fast transaction "side-chains"
+  directly in the judge for the main chain.
+  (3 days).
+
+Long term:
+* Develop reconciliation mechanisms that minimize the latency yet preserve security through lawsuits
+  (20 days).
+
+
+### Customer Software (Backend)
+
+#### Accounting
+
+Short term:
+* Manage keys to view many addresses
+  (1 day).
+
+Long term:
+* Let users tag and otherwise categorize their addresses and their transactions, and
+  group/coalesce them together according to some DSL for criteria.
+
+#### Sending
+
+Short term:
+* Add support for going through facilitator
+  (5 days).
+
+#### Receiving
+
+Short term:
+* Just wait for Consensus
+  (0 days).
+
+#### Lawyer
+
+Short term:
+* Make sure a user has a can play his role in all lawsuits
+  (3 days).
+
+
+### Merchant
+
+#### Accounting
+
+Same as above.
+
+#### Sending
+
+Same as above.
+
+#### Receiving
+
+Short term:
+* Add support for going through facilitator
+  (5 days).
+
+#### Lawyer
+
+Same as above.
+
+
+### Notary
+
+Short term:
+* Be a facilitator: talk to both sender, receiver, and local database
+  (10 days).
+* Be a gossiper: accept data, pre-validate it, store it, forward it
+  (10 days).
+* Be a notary: partake in the many phases of the consensus protocol
+  (0 days if using Tezos or another Delegated Proof of Stake system,
+  20 days if forking Bitcoin or Ethereum).
+* Be a detective: watch side-chains for unreported violations, sic lawyer at offenders
+  (10 days).
+* Be a lawyer: partake in verification games
+  (5 days).
+* Be a judge: maintain accounts for everyone
+  (1 day).
