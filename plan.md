@@ -3,7 +3,84 @@
 Identify the Skills & Time required for each part of the project...
 to reach technological demo
 
-## To Reach Technological Demo
+[[_TOC_]]
+
+## Milestones
+
+Advancement on the product and each its components can be measured in terms of milestones.
+Components and sub-components may advance at somewhat different paces, and
+the advancement of the product as a whole or each component is only as far as
+the least advanced of the subcomponents.
+
+### M0: Workable Design
+
+On paper, we have a reasonable idea of what we're going to build,
+what the architecture looks like, what are the major pitfalls,
+and how long it will take.
+
+For FaCTS as a whole, that would be
+reasonably complete whitepapers (both FaCTS and Legicash),
+a development plan (this document) and an investor deck.
+
+### M1: Technological Demo
+
+We have some running code that demonstrates the main thing we can do that our competitors cannot do.
+There can be gaping holes and missing features,
+the code can be extremely fragile and badly written (and not at all proven correct),
+the interface need not be fancy at all,
+but the main value proposition of our product is visible.
+It need not be proven correct, or implement all the invariants required to ensure safety.
+
+For FaCTS as a whole, we would have a fast payment channel side-chain,
+with a working flow of fast payment, authorization, etc., where everyone is honest,
+and working flows of smart legal challenge and response to punish a dishonest or failed facilitator
+according to at least one broken invariant.
+The interface would be use the command-line or REPL, and the network protocol could be local only.
+
+### M2: Feature Complete
+
+The code covers the entire architecture for the initial release.
+All the interfaces are defined, and all the implementations are more than mere stubs
+and work in the common case, though they are not necessarily robust yet.
+
+For FaCTS as a whole, we would have a complete system with some non-trivial code for every component,
+that could run the easy cases without crashing for all the actors and roles involved.
+We wouldn't have proofs of everything, but at least reasonable specifications of what to prove,
+that we can assume as axioms.
+
+### M3: Internally Proven
+
+The code is robust up to our knowledge, and
+ready for alpha release to technology enthusiasts on a test network.
+It hasn't met the hard reality of the outside world yet,
+but we are satisfied that it is a reasonable design that we can't break ourselves.
+
+For FaCTS as a whole, that means we have a complete product that works even in corner cases,
+with correctness proofs for relevant parts of our code,
+though there may be a few identified minor holes that we know we need to address.
+
+### M4: Externally Proven
+
+The code has been tested by external testers, including a Red Team,
+and is ready for beta release to the general public,
+and though it is not officially ready for production,
+small tests in on what will become the production network are possible.
+There may still be lingering minor bugs, but the product is basically ready for release.
+
+For FaCTS as a whole, that means we have a complete robust product that
+we are confident we can release, though there may be a few non-blocking kinks to get rid of.
+
+### M5: Release
+
+The code is released, the production network is launched, and it's all working.
+The product is easy to install and to use, with documentation enough for the target audience.
+
+For FaCTS as a whole, this means our blockchain goes live,
+with significant amounts of real money at stake
+(though how significant, will increase over time).
+
+
+## Plan To Release FaCTS
 
 ### Logical Specification
 
@@ -344,3 +421,17 @@ Short term:
   (5 days).
 * Be a judge: maintain accounts for everyone
   (1 day).
+
+
+### Formal proofs
+
+### Web Front-End
+
+### Mobile Front-End
+
+
+
+## Bibliography
+
+Analyzing contracts
+https://arxiv.org/pdf/1802.06038.pdf
