@@ -11,6 +11,9 @@ the long-term trend for cryptocurrencies remains one of growth,
 because central bank currencies keep betraying users:
 Cyprus, India, Venezuela, Zimbabwe... who's next?
 
+But Legicash is not just about currency itself, but also about a platform for fast payment,
+and eventually for smart contracts that can bind blockchains together.
+
 ## Competition
 
 ### Won't the Lightning Network, Raiden, etc. solve the issue for Bitcoin, Ethereum, etc.?
@@ -56,12 +59,20 @@ we could strike a deal with them.
 
 ## Technology
 
-### Won't querying the Gossip network be just as slow as the Consensus?
+### Won't querying the Gossip network be just as slow as waiting for the Consensus?
+
+SOME transactions MUST wait for the consensus, and no one can help them.
+Selling a house? A diamond? Exchanging cash? Don't accept fast confirmations.
+
+Selling products or services to a physical person: the person is probably not double-spending
+at the same second in another place, much less multi-spending a thousand times.
+Plus you can easily run after them.
+Selling physical goods online? Confirm to user immediately,
+but don't actually deliver before confirmation.
 
 For certain transactions, and when the payment processors is not otherwise trusted,
 it is indeed better to wait for at least one round of the Consensus.
 
-TODO: explain why this isn't a problem in most cases.
 
 ## Economics
 

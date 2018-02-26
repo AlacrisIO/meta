@@ -187,7 +187,7 @@ with significant amounts of real money at stake
 #### Description
 
 * Client interface for casual users
-* Management interface for the miners, underwriters, etc.
+* Management interface for the miners, trust delegates, etc.
 
 #### Skills
 
@@ -198,7 +198,7 @@ with significant amounts of real money at stake
 
 #### Resources
 
-* Full-time front-end expert
+* Full-time front-end expert.
 
 ### Release Engineering
 
