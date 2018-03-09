@@ -37,6 +37,63 @@ and working flows of smart legal challenge and response to punish a dishonest or
 according to at least one broken invariant.
 The interface would be use the command-line or REPL, and the network protocol could be local only.
 
+* Logical spec:
+  just the data types;
+  semi-formal specification for the logical properties, without proofs
+  (multiple revisions).
+  Estimate: 5 man-days
+* Data Schema:
+  as per above, plus reasonably ad hoc codec, not particularly robust
+  (but no unidentified glaring hole either).
+  Estimate: 3 man-days
+* Client (Customer Role):
+  query merchant facilitator criteria (simplified);
+  open a facilitator account;
+  send a transaction to the facilitator (fast only);
+  close a facilitator account the hard way.
+  Estimate: 4 man-days
+* Client (Merchant Role):
+  advertise facilitator criteria (simplified -- just presence of the account?);
+  receive transaction from facilitator (fast only);
+  due diligence on gossip network (simplified).
+  Estimate: 4 man-days
+* Server (Facilitator):
+  store the side-chain on postgresql (or even sqlite);
+  accept new clients;
+  process transactions;
+  compute fast transaction limit;
+  update side-chain on main-chain;
+  out-of-court settlement for fast out-of-side-chain payment to other facilitator or user (optional?).
+  Estimate: 10 man-days
+* Contract (Referee):
+  require update;
+  check well-formedness;
+  allow money in;
+  allow money out;
+  allow settlement;
+  (not: third-party litigation, corrections post-commit).
+  Estimate: 10 man-days.
+* Client Strategy (Lawyer):
+  get money out.
+  Estimate: 5 man-days.
+* Server Strategy (Lawyer):
+  keep money in.
+  Estimate: 5 man-days.
+* Attacker:
+  attack demo: take out money that isn't yours (no third party litigation);
+  attack demo: publish a bad block (individual exit).
+  Estimate: 2 man-days.
+* Gossip (Registry):
+  yes stub.
+  Estimate: 1 man.days
+* Tooling:
+  simple command line interface;
+  build, test, release, deploy.
+  Estimate: 2 man.days
+* Getting into the code base:
+  Estimate: 15 man.days
+
+
 ### M2: Feature Complete
 
 The code covers the entire architecture for the initial release.
@@ -47,6 +104,73 @@ For FaCTS as a whole, we would have a complete system with some non-trivial code
 that could run the easy cases without crashing for all the actors and roles involved.
 We wouldn't have proofs of everything, but at least reasonable specifications of what to prove,
 that we can assume as axioms.
+
+* Logical spec:
+  formal specification for the logical properties, without proofs (maybe imperfect);
+  good model for itemized claims and settlement;
+  good model for collective exit.
+  Estimate: 25 man-days
+* Data Schema:
+  automated codec extraction from spec (with semi-decent runtime performance).
+  Estimate: 6 man-days
+* Client (Customer Role):
+  query merchant facilitator criteria (full);
+  open and manage multiple facilitator accounts;
+  send transactions to the best facilitators (fast or slow);
+  close a facilitator account the hard way, but first through rival facilitator.
+  Estimate: 20 man-days of S.D.
+* Client Frontend (Customer Role):
+  Estimate: 12 man-days of F.E.D.
+* Client (Merchant Role):
+  advertise facilitator criteria (full);
+  receive transaction from facilitator (fast or slow);
+  aggregate and relate multiple transactions for a payment, note if fast or slow;
+  due diligence on gossip network (full).
+  Estimate: 20 man-days
+* Client Frontend (Merchant Role):
+  Estimate: 12 man-days of F.E.D.
+* Server (Facilitator):
+  store the side-chain on postgresql in a robust distributed setting;
+  accept new clients;
+  process transactions;
+  compute fast transaction limit;
+  update side-chain on main-chain;
+  out-of-court settlement for fast out-of-side-chain payment to other facilitator or user;
+  partake in mass exit;
+  react to mass exit.
+  Estimate: 40 man-days
+* Client Frontend (Facilitator):
+  Estimate: 20 man-days
+* Contract (Referee):
+  require update;
+  check well-formedness;
+  allow money in;
+  allow money out;
+  allow settlement;
+  third-party litigation;
+  corrections post-commit.
+  Estimate: 25 man-days.
+* Client Strategy (Lawyer):
+  Estimate: automatically extract winning strategy.
+  Estimate: 10 man-days.
+* Server Strategy (Lawyer):
+  keep money in.
+  automatically extract winning strategy.
+  Estimate: 5 man-days.
+* Attacker:
+  Estimate: attack demo: take out money that isn't yours (no third party litigation);
+  Estimate: attack demo: publish a bad block (individual exit).
+  Estimate: 15 man-days.
+* Gossip (Registry):
+  Finite set of independent servers that all sign.
+  Estimate: 10 man.days
+* Tooling:
+  simple command line interface;
+  build, test, release, deploy.
+  Estimate: 10 man.days
+* Getting into the code base:
+  Estimate: 15 man.days
+
 
 ### M3: Internally Proven
 
