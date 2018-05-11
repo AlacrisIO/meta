@@ -161,7 +161,7 @@ that we can assume as axioms.
   Estimate: attack demo: take out money that isn't yours (no third party litigation);
   Estimate: attack demo: publish a bad block (individual exit).
   Estimate: 15 man-days.
-* Gossip (Registry):
+* Court Registry:
   Finite set of independent servers that all sign.
   Estimate: 10 man.days
 * Tooling:
@@ -559,3 +559,32 @@ Short term:
 
 Analyzing contracts
 https://arxiv.org/pdf/1802.06038.pdf
+
+
+
+create facilitator
+close facilitator
+update facilitator sidechain state + pay penalties
+open account
+close account
+send payment
+settle external payment (to/from main/side chain)
+denounce facilitator (minor / major)
+mass transfer account (voluntary / involuntary)
+
+
+Simplification for demo:
+1- payment
+2- settlement of main-chain vs side-chain swap (including account creation / deletion?)
+3- adversarial exit (with the simplest invariant, both success / failure cases)
+
+
+Q: how to predict court fees as prelude to determining bond.
+
+The programming / logic model has to deal with
+public databases that atomically include records,
+and relations between consecutive states of these databases.
+A signature by a manager is a promise to include some data in the next version of the database.
+
+
+
