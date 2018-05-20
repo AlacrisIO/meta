@@ -49,13 +49,13 @@ h- some facts represent messages, activities, actor states, resources, and are s
 
 
 
-More flows: settlement, fraud, claims, resolution, mass exit...
+More flows: settlement, state update, mass voluntary exit...
 Simple Settlement: atomic cross-chain settlement; Lightning Network.
 ACIDity: some database with remove replicates.
 Pipelining: parallelizing signatures, etc., minimizing contention, types for provably-correct way (ScalaZ?)
 Court Registry: types, basic service, pricing, elastic resourcing, gossip
 Better Testing: QuickCheck, Integration Tests
 Mass Transfers: Mass Force Close, Mass Withdraw
+Ethereum support: Talking to full node and/or light client
 EVM contract: Bamboo, etc.
-Talking to the Ethereum support node or light client
-Fraud: specification, contract, 
+Fraud: specification, types, contract, court pricing, argument strategy, claims, resolution, etc.
