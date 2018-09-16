@@ -47,8 +47,9 @@ f- a full node needs to maintain a mapping of the active facts
 g- some facts may expire from the active set after a while — but their presence can still be verified with merkle paths.
 h- some facts represent messages, activities, actor states, resources, and are systematically spent after first use; verifiers can recognize those facts and just remove them from the active list rather than keep both them and their spending witness (they cancel each other).
 
+-------------------------------------------------------------------------------
 
-
+Actual communication protocol: multiple actors talking to each other, protocol versioned
 More flows: settlement, state update, mass voluntary exit...
 Simple Settlement: atomic cross-chain settlement; Lightning Network.
 ACIDity: some database with remove replicates.
@@ -59,3 +60,17 @@ Mass Transfers: Mass Force Close, Mass Withdraw
 Ethereum support: Talking to full node and/or light client
 EVM contract: Bamboo, etc.
 Fraud: specification, types, contract, court pricing, argument strategy, claims, resolution, etc.
+
+-------------------------------------------------------------------------------
+
+Prepare for June: LambdaConf. https://lambdaconf2018.dryfta.com/en/program-schedule/program/91/first-class-implementations-or-climbing-up-the-semantic-tower-at-runtime
+Prepare for October 5-8: mentoring at http://Women4Blockchain.com/ (NYC). Goal: train attendees to build an MVP for contracts. Or what to expect from being an entrepreneur.
+Prepare for November: Decrypted (Spain) https://decryptedforum.com/
+
+Contact Jerome de Tychey (@jdetychey), French Ethereum
+Contact Cédric Fournet
+
+
+Turing-incompleteness:
+* no variable list creation, only list constants (including function parameters)
+* http://www.cs.albany.edu/FacultyStaff/profiles/willard.htm

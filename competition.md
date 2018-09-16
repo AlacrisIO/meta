@@ -1,6 +1,25 @@
 The Competitive Landscape
 =========================
 
+
+Algorand
+--------
+
+
+Augur
+-----
+
+[Augur](https://www.augur.net/) XXX
+
+
+Blockstream's Liquid
+--------------------
+
+[Liquid](https://blockstream.com/liquid/) is an early side-chain project,
+with a two-way peg to Bitcoin, with a fixed set of notaries who handle all the logic.
+
+
+
 ChainLink
 ---------
 
@@ -9,10 +28,43 @@ ChainLink
 ChainLink, or a clone thereof, would work well as a complement to our proposal Legicash. Our Legicash protocol can help enforce internal and mutual structural properties of blockchains, but cannot make up the data values for external events; ChainLink or similar technologies provide usef
 
 
+Dragonchain
+-----------
+
+[Dragonchain](https://dragonchain.com/) has the notion of using side-chains for scaling
+and notaries for synchronizing with the main chain, but its whitepaper looks like it is
+yet another in the category of "business idea without technical backing".
+
+
 Ethereum
 --------
 
 [Ethereum](https://www.ethereum.org/) is an established cryptocurrency that pioneered the use of smart contracts. There is now a formal model of its blockchain and contract virtual machine. Although Ethereum currently does not have anything that overlaps with Legicash FaCTS, their upcoming development, Plasma, will be very similar (see more on Plasma below). Ethereum is a potential platform on which to eventually deploy our smart contract technology once it’s mature (see our second proposal Legicash), given that we have a good relationship with members of the core Ethereum team. However, Ethereum is not the best option for our initial deployment of Legicash FaCTS since Legicash FaCTS would require too many backward-incompatible changes to their very large existing network.
+
+
+Factom
+------
+
+[Factom](https://www.factom.com/) is a blockchain
+with its own consensus (non-transferable PoS) and token ("Factoid").
+It requires the current leader of every tenth one-minute consensus round
+to publish the summary of an update to Bitcoin.
+It is thus a Bitcoin side-chain, but with no pegging between BTC and Factoids.
+The value of it being a side-chain at all is only to ride on Bitcoin's POW
+to prevent false histories.
+
+Otherwise, it purports to store data ("facts") in a DHT,
+though it is unclear what are the incentives for publication and against non-publication -
+which makes it worse than SIA or FileCoin.
+On the other hand, it has this interesting idea of cleanly separating
+the collation of transactions which happens in the consensus servers,
+from the interpretation of the transactions as having a meaning in terms of tokens,
+which can happen in any full client.
+Clean from a design point of view, but the overall economic benefits and costs are not clear.
+
+There are no obviously published data on how well it scales.
+They advertise recursive side-chains, but if it's also without pegging,
+the economic value is recursively dubious.
 
 
 FileCoin
@@ -34,6 +86,12 @@ If the performance projections for Hedera are correct, achieving consensus in a 
 
 On the other hand, our more general Legicash system proposal is positively, not negatively, affected by any performance improvement of the consensus, and will welcome any speedup from using hashgraph.
 Hashgraph seems to be the most “one to watch” technology at the moment. We believe it is more promising than all the other projects cited in this appendix.
+
+IOHK
+----
+
+[IOHK](https://iohk.io/research/library/#tag-smartcontract).
+[IOHK research library on smart contracts](https://iohk.io/research/library/#tag-smartcontract).
 
 
 IOTA
@@ -73,11 +131,15 @@ It is unclear at this point if and when the Lightning Network will be fully func
 Liquidity Network
 -----------------
 
-Liquidity Network [whitepaper](https://liquidity.network/whitepaper_Liquidity_Network.pdf)
-looks very much like Legicash FaCTS, but it is not very clear how they defend against
-bad transitions or block withholding.
+The Liquidity Network, from reading its [whitepaper](https://liquidity.network/whitepaper_Liquidity_Network.pdf),
+looks very much like Legicash FaCTS.
+However, it is not very clear from the how they defend against bad transitions or block withholding.
 
 
+Loom
+----
+
+[Loom](https://loomx.io/) is a platform to write dApps, with the broken paradigm of dApps as computing on the blockchain. Now, they do use side-chains; but their side-chains have their own consensus and only partially linked to the main-chain via contracts. Better as a platform to learn and play than one to actually develop with.
 
 
 Nano
@@ -90,12 +152,36 @@ Where Nano and Legicash FaCTS diverge is that the Nano authors did not emphasize
 If our plans to build on Tezos change for political reasons, Nano may or may not be a good alternative for Legicash to start with, depending on whether we Legicash teams and the Nano team can get our complementary approaches to work together.
 
 
+Nebulas
+-------
+
+
+Neon Exchange (NEX)
+-------------------
+
+[White paper](https://neonexchange.org/pdfs/whitepaper_v2.pdf)
+
+
 Nervos
 ------
 
-nervos.org
+[Nervos](nervos.org)
 They might actually provide data ingestion, *validation* and republication at scale,
 making them a viable court registry.
+
+[Review](https://cryptobriefing.com/nervos-ico-review-token-analysis/)
+
+Code: since 2012, now 10 Rust developers.
+
+
+OmniLedger
+----------
+
+Reacting to their whitepaper started me (Faré) on the journey to Legicash.
+Technically interesting (though falling far behind e.g. Algorand),
+it completely misses the point with respect to how the economics of proof of work
+(that it only mentions in passing) affect what it means for there being a "thousand computers"
+involved in each shard, when e.g. for Bitcoin their would be 95% the same 3 to 10 computers.
 
 
 Ontology
@@ -131,7 +217,7 @@ Plasma is a great predecessor to Legicash FaCTS, but Legicash includes many key 
 PolkaDot
 --------
 
-[Polka Dot](https://polkadot.io/) provides a vision for binding multiple chains together using accountability through bonds, and has many worthwhile economic ideas, such as trying to identify the many roles of participants in the network.
+[Polka Dot](https://polkadot.network/) provides a vision for binding multiple chains together using accountability through bonds, and has many worthwhile economic ideas, such as trying to identify the many roles of participants in the network.
 
 However, Polka Dot does not address attacks on the all-important interchain transactions. How can a chain trust availability of data on another one, and thus host verification contracts? The whitepaper leaves too many technical questions open.
 
@@ -164,6 +250,31 @@ Ripple
 [Ripple](https://ripple.com/) is a blockchain that openly embraces centralized responsibilities to achieve great performance. Because it doesn’t even claim or try to achieve trustless security, it is radically simpler and vastly superior to the many blockchain projects that try it and fail at it. For the same reason, though, Ripple is not a direct competitor of Bitcoin in terms of  trustless network security. Some might even argue that it is not a “cryptocurrency” sensu stricto, though it is based on blockchain technology.
 
 Legicash FaCTS aims at being as fast as Ripple while providing the same trustless security as Bitcoin.
+
+
+RSK
+---
+
+[RSK](https://www.rsk.co/) is doing two-way pegs between a main chain and a side-chain,
+where all the logic and security is moved to the notaries who handle the side-chain
+and/or miners for the main chain who do merged mining.
+
+Similar to Liquid, but also adds contracts on the side-chain, and combines notaries and miners.
+
+
+Skale
+-----
+
+[Skale](https://www.skalelabs.com/) no whitepaper yet, but it looks like
+they will be offering a Plasma solution.
+[https://medium.com/@megadeth20/skale-labs-overview-115e75ba48d6](Medium) introduction.
+TODO: see the CTO's posts on Ethresear.ch.
+
+
+Stellar
+-------
+
+Michael Horowitz says they have a great scripting language...
 
 
 Tezos
