@@ -1,15 +1,47 @@
 The Competitive Landscape
 =========================
 
+Alacris is building a complete Operating System for developing and deploying
+Decentralized Applications (DApps).
+There are no competitors currently offering such a package
+or hinting at having such an ongoing project;
+but there are many competitors who offer what could be individual components in
+a complete Operating System, and may or may not move in this direction in the future.
+Alacris is currently working mainly on two aspects of DApp development:
+(1) a portable Domain-Specific Language (DSL) to specify and formally verify entire DApps, and
+(2) a scaling solution to make DApp performance competitive with centralized applications.
+
+For the language aspect, see [this other document](https://github.com/AlacrisIO/alacrity/blob/master/archive/competition.md)
+
+This document focuses on networks that offer or purport to offer scaling solutions.
+
+By comparison to all the solutions below, our Mutual Knowledge Base (MKB)
+tries to produce Mutual Knowledge, where other networks try to build Common Knowledge.
+Mutual Knowledge is simpler and cheaper, easier to parallelize and scale, and
+can be shared across all side-chains on all existing Layer 1 networks,
+instead of being tied to one particular Layer 1 network.
+That means our MKB offering is universal and can be used for all future scaling solutions,
+whereas each of our competitors’ solution is specific to one product.
+Our MKB therefore has the potential for much better capital efficiency and attracting more capital,
+yielding greater security than our competitors.
+
 
 Algorand
 --------
+
+Extremely solid technically, though sometimes difficult to read.
+Maybe some issues with economic incentives, but unclear if so.
+They didn't reveal their smart contract solution yet.
+
+Good people. Watch them. Work with them.
 
 
 Augur
 -----
 
-[Augur](https://www.augur.net/) XXX
+[Augur](https://www.augur.net/)
+
+TODO: look into it.
 
 
 Blockstream's Liquid
@@ -18,7 +50,8 @@ Blockstream's Liquid
 [Liquid](https://blockstream.com/liquid/) is an early side-chain project,
 with a two-way peg to Bitcoin, with a fixed set of notaries who handle all the logic.
 On top of this side-chain they have a richer smart contract language than Bitcoin
-(is this where they use Simplicity?), a blinding layer called Confidential Assets,
+(is this where they use Simplicity? Unhappily it's actually unusable),
+a blinding layer called Confidential Assets (?), etc.
 
 See their [Elements blockchain](https://elementsproject.org/) and their
 [source on GitHub](https://github.com/Blockstream/liquid).
@@ -27,16 +60,50 @@ See their [Elements blockchain](https://elementsproject.org/) and their
 Cardano
 -------
 
+They raised a lot of money, take formal methods seriously and take their time to do things right.
+
+Good people. Watch them. Work with them.
+
 [IOHK](https://iohk.io/research/library/#tag-smartcontract).
 [IOHK research library on smart contracts](https://iohk.io/research/library/#tag-smartcontract).
+
+
+Celer
+-----
+
+Good people developing seemingly great state channel solutions. Follow their progress.
 
 
 ChainLink
 ---------
 
-[ChainLink](https://www.smartcontract.com/) provides a great approach for smart contracts on a blockchain (currently, Ethereum) to refer to data from the outside world. For instance, simple crop insurance contracts might refer to weather reports. Key entities, or oracles, sign and publish data anchored in the outside world. The challenge is to build oracles that can be reasonably trusted by participants in a contract. ChainLink offers many mitigation strategies and services to build more trustworthy oracles out of a collection of existing oracles. In the end, this kind of technology allows smart contracts in a decentralized consensus to query data from centralized information sources.
+[ChainLink](https://www.smartcontract.com/) provides a great approach for smart contracts on a blockchain (currently, Ethereum) to refer to data from the outside world. For instance, simple crop insurance contracts might refer to weather reports. Key entities, or oracles, sign and publish data anchored in the outside world. The challenge is to build oracles that can be reasonably trusted by participants in a contract. ChainLink offers many mitigation strategies and services to build more trustworthy oracles out of a collection of existing oracles. In the end, this kind of technology allows smart contracts in a decentralized consensus to query data from centralized information sources. Technically, their code isn't amazing, but it's *solid*, and that's what matters.
 
-ChainLink, or a clone thereof, would work well as a complement to our proposal Legicash. Our Legicash protocol can help enforce internal and mutual structural properties of blockchains, but cannot make up the data values for external events; ChainLink or similar technologies provide usef
+ChainLink, or a clone thereof, would work well as a complement to our proposal Legicash. Our Legicash protocol can help enforce internal and mutual structural properties of blockchains, but cannot make up the data values for external events; ChainLink or similar technologies provide this useful "oracle" service.
+
+Good people.
+
+
+Cosmos
+------
+
+[Cosmos](https://cosmos.network/) is closest to what we think is an operating system
+with an all-encompassing vision:
+they want to connect blockchains,
+they offer a SDK to build entire DApps,
+they have their own economic validation network (or rather, federation of networks).
+But we do believe that their approach is flawed
+both in its computation model and its economic model, one because the other:
+They gave up on trying to define a DSL for safe DApp development, and
+instead want to use regular languages like Go;
+this makes it computationally unsafe for participants to validate applications they do not trust
+(an unsafe app can hack your computer and steal all your assets),
+which in turn means that each app will only be validated by a small network with little capital,
+and the federated network only makes it easy for attackers to capture these small networks one by one,
+while significantly raising the barrier to entry to deploying a small app.
+Instead, our vision is to build tools that connect blockchains
+without sacrificing computational safety, and have a single universal validation network
+with a large capitalization for economic safety.
 
 
 Dfinity
@@ -47,7 +114,7 @@ Dfinity
 2. a "beacon" that generates a VRF based on a threshold signature of registered
 ...
 
-TODO: look more into it.
+TODO: They seem to be good people. Look more into it.
 
 
 Dragonchain
@@ -114,10 +181,14 @@ Their contract story on the other hand, isn't great yet, and "just" using the EV
 might prevent them from scaling.
 
 
-IOHK
-----
+Kadena
+------
 
-See Cardano.
+Good people. Looks like they will scale.
+
+Their smart contract language Pact has lots of good ideas,
+but seems to me to be based on the wrong assumptions wrt what smart contracts are for.
+
 
 IOTA
 ----
@@ -196,6 +267,17 @@ Loom
 [Loom](https://loomx.io/) is a platform to write dApps, with the broken paradigm of dApps as computing on the blockchain. Now, they do use side-chains; but their side-chains have their own consensus and only partially linked to the main-chain via contracts. Better as a platform to learn and play than one to actually develop with.
 
 
+Matic
+-----
+
+Matic looks like they have very similar ideas to Legicash-FACTS.
+They started a year later, but actually got funding, and are building the code. Good for them.
+Their whitepaper has a lot of questions that we have already answered,
+but no doubt they will find the answers eventually as they hit the road.
+
+Follow them.
+
+
 Nano
 ----
 
@@ -208,6 +290,8 @@ If our plans to build on Tezos change for political reasons, Nano may or may not
 
 Nebulas
 -------
+
+TODO: Didn't impress at first look. Look more into it.
 
 
 
@@ -270,6 +354,23 @@ Plasma is a great predecessor to Legicash FaCTS, but Legicash includes many key 
 
 https://ethresear.ch/t/plasma-world-map-the-hitchhiker-s-guide-to-the-plasma/4333
 
+See Plasma Group below.
+
+
+Plasma Group
+------------
+
+[Plasma Group](https://plasma.group) is, so far as I can tell,
+the only group who succeeded at fixing the hard issues in the original Plasma paper.
+Many people have claimed to do it, but all the other solutions I've seen were deeply flawed.
+
+Plasma Group solves the data availability issue in Plasma by decentralizing it to each owner:
+the ledger maps tokens to owner, rather than the other way around,
+and each owner must make sure they have the entire title history of each of their assets,
+and be ready to use it to defend them in "court" if claimed by bad actors.
+They are even working on mass exits to other chains, and garbage collection for fee payments.
+Not quite ready yet, but very promiseful.
+
 
 PolkaDot
 --------
@@ -277,6 +378,8 @@ PolkaDot
 [Polka Dot](https://polkadot.network/) provides a vision for binding multiple chains together using accountability through bonds, and has many worthwhile economic ideas, such as trying to identify the many roles of participants in the network.
 
 However, Polka Dot does not address attacks on the all-important interchain transactions. How can a chain trust availability of data on another one, and thus host verification contracts? The whitepaper leaves too many technical questions open.
+
+TODO: It looks like they have raised money and actually built something interesting since. Look at it again.
 
 
 Pumapay
@@ -327,13 +430,17 @@ suggesting a non-existent endorsement).
 Maybe a serious competitor, maybe not.
 
 
-Skale
+SKALE
 -----
 
-[Skale](https://www.skalelabs.com/) no whitepaper yet, but it looks like
-they will be offering a Plasma solution.
+[SKALE](https://www.skalelabs.com/) no whitepaper yet, but it looks like
+they are offering a fast side-chain solution with its own economic validation network.
 [https://medium.com/@megadeth20/skale-labs-overview-115e75ba48d6](Medium) introduction.
-TODO: see the CTO's posts on Ethresear.ch.
+
+TODO: see the CTO's posts on Ethresear.ch, their recently released code, etc.
+They look extremely competent on the network and security side,
+though they don't seem to have a good understanding of the contract side.
+Follow them.
 
 
 Stellar
@@ -355,7 +462,9 @@ TrueBit
 
 [TrueBit](https://truebit.io/) uses Ethereum smart contracts to implement a Verification Game. It can thus verify logical invariants of structures published on the blockchain with a variety of applications.
 
-However, TrueBit fails to draw a link to Computability Logic, which would offer a formal framework to systematize the design of those games. Furthermore, it is written, like its successor Plasma, with the assumption that “smart contracts” are about computations that are supposed to happen in a decentralized trustless way. By contrast, Legicash is based on the understanding that “smart contracts” are about computations that are not supposed to happen; Court should always be a last resort, never a default option.
+However, TrueBit fails to draw a link to Game Semantics or Computability Logic, which would offer a formal framework to systematize the design of those games. Furthermore, it is written, like its successor Plasma, with the assumption that “smart contracts” are about computations that are supposed to happen in a decentralized trustless way. By contrast, Legicash is based on the understanding that “smart contracts” are about computations that are not supposed to happen; Court should always be a last resort, never a default option.
+
+Also, they seem overly optimistic regarding how short timeouts can be when playing games. In practice, short timeouts are a big security issue, whereas long timeouts make TrueBit's dichotomy approach quite impractical.
 
 
 Truthcoin
@@ -364,25 +473,14 @@ Truthcoin
 [Truthcoin](http://truthcoin.info/) (2014-2018) by Paul Sztorc,
 once renamed [Hivemind](http://bitcoinhivemind.com/) (2015-2016).
 It has ideas both weird and great about smart contracts, oracles, etc.
+
 Warning: Sztorc seems to have the "takes pro-IP arguments seriously problem",
 as in "if anyone can copy the data, no useful data will be published",
 which is obviously false.
 
 
-Who are our main competitors?
-=============================
+xDAI
+----
 
-Please tell us the main competitors of your project and provide us your comparison with other products.
-
-Alacris is building a complete Operating System for developing and deploying Decentralized Applications (DApps). There are no competitors currently offering such a package or hinting at having such an ongoing project; but there are many competitors who offer what could be individual components in a complete Operating System, and may or may not move in this direction in the future.
-Alacris is currently working mainly on two aspects of DApp development: (1) a portable Domain-Specific Language (DSL) to specify and formally verify entire DApps, and (2) a scaling solution to make DApp performance competitive with centralized applications.
-
-On the first aspect, there are many competitors writing DSLs to write smart contracts—but already, these languages only handle the smart-contract, and not the entire DApp. Any bug in the client or server code, or any discrepancy between that code and the contract, and the users’ assets will disappear as surely as if the bug were in the contract. But no competitor seems to even be aware of the issue. Our DSL, Alacrity, can be used to specify and formally verify contract and client code at the same time, and make sure they are generated in a coherent way, using End-Point Projection, a technique unique to us.
-Almost all of these smart contract languages are chain-specific: Solidity, Simplicity, spedn, Plutus, Marlowe, Michelson, Liquidity, Pact, Scilla, etc. One language, DAML, is portable, but is designed for permissioned blockchains; it is excellent on the financial contract side, but despite being so much better than all other solutions for permissioned blockchains, it is still not at all suited for the adversarial environment of permissionless blockchains. A few of these languages are well-suited to formal verification (e.g. Scilla). Most aren’t, worse or verify the wrong things (Simplicity). A few of these languages allow for a little bit more integration with a language to build client code than others (Plutus, Michelson), but it still remains very low-level and error-prone, checking data types of messages but not the state of the computation.
-Some companies claim to be building an “Operating System”, but what they mean is very different from us. For instance, Zeppelin OS does an amazing job at building tools on the Ethereum ecosystem; but their vision has no cross-chain portability; they write contract and client code separately in Solidity and Javascript; they do not offer deployment services.
-On the formal verification aspect, some companies like CertiK or Runtime Verification have built great tools and framework to verify smart contracts. However, once again they tend to only verify the smart contract, and not the entire DApp. They also seem not to take into account the adversarial aspect of the blockchain in the properties they verify and thus miss key safety properties.
-
-On the second aspect, scaling, there are many projects trying to scale transactions with a “Layer 2” solution. Some of the most interesting competitors include SKALE, Celer, Plasma Group, Matic, xDAI, the Blockstream Liquid Network, the Lightning Network, etc. Other projects try to scale directly on the “Layer 1”, like Ethereum 2, Kadena, Hedera Hashgraph, etc. However, our approach has unique properties unmatched by either category of competitors. Our scaling architecture divides scaling in two tasks: managing side-chains, and ensuring data availability (to prevent “data withholding attacks”). We solve the former task (side-chain management) in a way very similar to Plasma Group (whose better innovation we will copy) or Matic (who is new in the space), which allows for great performance competitive with centralized solutions. We solve the latter task (data availability) with an economic validator network, much like SKALE, xDAI, Liquid and Layer 1 solutions—but our network, which we call the Mutual Knowledge Base (MKB), only needs build a cheaper and simpler result, is easier to scale, and can be shared across all side-chains on all existing Layer 1 networks, instead of being tied to one particular Layer 1 network. That means our MKB offering is universal and can be used for all future scaling solutions, whereas each of our competitors’ solution is specific to one product. Our MKB  therefore has the potential for much better capital efficiency and attracting more capital, yielding greater security than our competitors.
-
-Cosmos is closest to what we think is an operating system with an all-encompassing vision: they want to connect blockchains, they offer a SDK to build entire DApps, they have their own economic validation network (or rather, federation of networks). But we do believe that their approach is flawed both in its computation model and its economic model, one because the other: They gave up on trying to define a DSL for safe DApp development, and instead want to use regular languages like Go; this makes it computationally unsafe for participants to validate applications they do not trust (an unsafe app can hack your computer and steal all your assets), which in turn means that each app will only be validated by a small network with little capital, and the federated network only makes it easy for attackers to capture these small networks one by one. Instead, our vision is to build tools that connect blockchains without sacrificing computational safety, and have a single universal validation network with a large capitalization for economic safety.
-
+A Proof of Authority (PoA, i.e. PoS with fixed stakes) side-chain
+for fast transactions with DAI. Looks basically sound, though limited in scope.
