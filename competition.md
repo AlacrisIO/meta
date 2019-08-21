@@ -17,7 +17,18 @@ Blockstream's Liquid
 
 [Liquid](https://blockstream.com/liquid/) is an early side-chain project,
 with a two-way peg to Bitcoin, with a fixed set of notaries who handle all the logic.
+On top of this side-chain they have a richer smart contract language than Bitcoin
+(is this where they use Simplicity?), a blinding layer called Confidential Assets,
 
+See their [Elements blockchain](https://elementsproject.org/) and their
+[source on GitHub](https://github.com/Blockstream/liquid).
+
+
+Cardano
+-------
+
+[IOHK](https://iohk.io/research/library/#tag-smartcontract).
+[IOHK research library on smart contracts](https://iohk.io/research/library/#tag-smartcontract).
 
 
 ChainLink
@@ -26,6 +37,17 @@ ChainLink
 [ChainLink](https://www.smartcontract.com/) provides a great approach for smart contracts on a blockchain (currently, Ethereum) to refer to data from the outside world. For instance, simple crop insurance contracts might refer to weather reports. Key entities, or oracles, sign and publish data anchored in the outside world. The challenge is to build oracles that can be reasonably trusted by participants in a contract. ChainLink offers many mitigation strategies and services to build more trustworthy oracles out of a collection of existing oracles. In the end, this kind of technology allows smart contracts in a decentralized consensus to query data from centralized information sources.
 
 ChainLink, or a clone thereof, would work well as a complement to our proposal Legicash. Our Legicash protocol can help enforce internal and mutual structural properties of blockchains, but cannot make up the data values for external events; ChainLink or similar technologies provide usef
+
+
+Dfinity
+-------
+
+[Dfinity](https://dfinity.org/) is an interesting layered architecture for blockchains:
+1. a "registry" for staked identities that partake in the network (PoS or PoW).
+2. a "beacon" that generates a VRF based on a threshold signature of registered
+...
+
+TODO: look more into it.
 
 
 Dragonchain
@@ -80,19 +102,22 @@ Hedera Hashgraph
 
 [Hashgraph](https://hashgraph.com/) is a remarkable new consensus algorithm based on gossip-about-gossip. Unlike other protocols that relegate gossip to lower layers of the protocol, hashgraph makes gossip an essential part of its protocol, and very elegantly builds the consensus as a property that emerges from gossip about gossip: the directed acyclic graph (DAG) of gossip contains a trace of all relevant communications; making this DAG explicit allows for optimal use of the information therein, making hashgraph as fast as any consensus algorithm can be; on top of the gossip graph, arbitrary old school byzantine voting algorithms can be run “virtually”, which works very well in a Proof-of-Stake setting. A cryptocurrency, Hedera, is being launched on top of Hashgraph. Design details are not available yet. On the other hand, announced performance from simulations is impressive: the platform will scale to over 100,000 transaction per seconds with a consensus latency of about 3 seconds. Even if the latency were twice as high, that would still be a notable improvement over debit card systems as well as a dramatic improvement over existing cryptocurrencies.
 
-In the context of Legicash FaCTS, gossip-about-gossip provides a way to measure progress from local knowledge to shared knowledge to common knowledge. It is a great tool to detect double spending attempts early, and to identify malicious miners who would partake in block withholding attacks and eventually punish them by forking. If Legicash FaCTS has to build its own blockchain from scratch, hashgraph is a great inspiration (though hashgraph itself is patented).
+In the context of Legicash FaCTS, "gossip-about-gossip" provides a way to measure progress from local knowledge to shared knowledge to common knowledge. It is a great tool to detect double spending attempts early, and to identify malicious miners who would partake in block withholding attacks and eventually punish them by forking. If Legicash FaCTS has to build its own blockchain from scratch, hashgraph is a great inspiration (though hashgraph itself is patented).
 
 If the performance projections for Hedera are correct, achieving consensus in a few seconds is so fast that Legicash FaCTS’s sub-second confirmation isn’t a huge improvement anymore. Legicash FaCTS could still accelerate transactions on networks that use older consensus algorithms, but these networks would soon be displaced by newer networks based on Hedera or other post-hashgraph technologies. If and when these new networks replace the old ones, the market for Legicash FaCTS would be restricted to secure facilitation services to non-technical people, people who live in places where internet bandwidth is at a premium, people using embedded devices, etc.
 
 On the other hand, our more general Legicash system proposal is positively, not negatively, affected by any performance improvement of the consensus, and will welcome any speedup from using hashgraph.
 Hashgraph seems to be the most “one to watch” technology at the moment. We believe it is more promising than all the other projects cited in this appendix.
 
+Their consensus-as-a-service beats Cosmos and could be used as an MKB.
+Their contract story on the other hand, isn't great yet, and "just" using the EVM
+might prevent them from scaling.
+
+
 IOHK
 ----
 
-[IOHK](https://iohk.io/research/library/#tag-smartcontract).
-[IOHK research library on smart contracts](https://iohk.io/research/library/#tag-smartcontract).
-
+See Cardano.
 
 IOTA
 ----
@@ -114,6 +139,19 @@ And if they could, that blockchain would win easily over existing ones,
 removing the need for interoperability with them.
 
 
+LeapDAO
+-------
+
+[LeapDAO](https://leapdao.org/) has an alpha-quality "Plasma network".
+The design looks sound from afar, though definitely not for end-users.
+On the other hand, the whitepaper is weak technically, and
+and fails to cite Plasma Group, the only real game in town with respect to
+Plasma without a data availability solution.
+Their solution for contracts is also overly complex and inherits problems from TrueBit;
+Just calling the EVM with CREATE2 and STATICCALL would be simpler
+without long dichotomy or timeout issues.
+
+
 Lightning Network
 -----------------
 
@@ -131,9 +169,25 @@ It is unclear at this point if and when the Lightning Network will be fully func
 Liquidity Network
 -----------------
 
-The Liquidity Network, from reading its [whitepaper](https://liquidity.network/whitepaper_Liquidity_Network.pdf),
+The Liquidity Network, from reading its
+[whitepaper](https://liquidity.network/whitepaper_Liquidity_Network.pdf),
 looks very much like Legicash FaCTS.
 However, it is not very clear from the how they defend against bad transitions or block withholding.
+
+Talking to Thibaud, they sound like they have the worst of both world of state channel and side-chains:
+managers undersign transactions between contract participants. What if they collude with sybil accounts
+to double spend, convince other users to issue valuable service before they exit including waiting for
+36 hours? The victim loses. To avoid loss, always exit, always wait 36 hours... and thus nothing scales.
+
+
+Lisk
+----
+
+[Lisk](https://lisk.io/) is a DPoS platform in JavaScript.
+A heavy OO style in JavaScript makes the quality of the code very dubious,
+while the documentation is skipping all the important details.
+Looks like a toy by amateurs who got lucky to be there early and collect funds,
+but have no concept regarding how to make software either robust or secure.
 
 
 Loom
@@ -154,6 +208,7 @@ If our plans to build on Tezos change for political reasons, Nano may or may not
 
 Nebulas
 -------
+
 
 
 Neon Exchange (NEX)
@@ -213,6 +268,8 @@ A third issue with Plasma is that they seem to neglect formal methods in their a
 
 Plasma is a great predecessor to Legicash FaCTS, but Legicash includes many key advances without which Plasma will probably fail.
 
+https://ethresear.ch/t/plasma-world-map-the-hitchhiker-s-guide-to-the-plasma/4333
+
 
 PolkaDot
 --------
@@ -258,8 +315,16 @@ RSK
 [RSK](https://www.rsk.co/) is doing two-way pegs between a main chain and a side-chain,
 where all the logic and security is moved to the notaries who handle the side-chain
 and/or miners for the main chain who do merged mining.
+The main chain that matters is Bitcoin.
 
-Similar to Liquid, but also adds contracts on the side-chain, and combines notaries and miners.
+Similar to Liquid, but also adds EVM contracts on the side-chain, and combines notaries and miners.
+
+The base ideas seem solid, but the development status is unknown and
+I haven't looked closely at the details.
+The marketing is slightly shady (e.g. Picture of Nick Szabo on
+https://medium.com/novamining/rootstock-rsk-smart-contracts-on-bitcoin-9ef28e135193
+suggesting a non-existent endorsement).
+Maybe a serious competitor, maybe not.
 
 
 Skale
@@ -302,3 +367,22 @@ It has ideas both weird and great about smart contracts, oracles, etc.
 Warning: Sztorc seems to have the "takes pro-IP arguments seriously problem",
 as in "if anyone can copy the data, no useful data will be published",
 which is obviously false.
+
+
+Who are our main competitors?
+=============================
+
+Please tell us the main competitors of your project and provide us your comparison with other products.
+
+Alacris is building a complete Operating System for developing and deploying Decentralized Applications (DApps). There are no competitors currently offering such a package or hinting at having such an ongoing project; but there are many competitors who offer what could be individual components in a complete Operating System, and may or may not move in this direction in the future.
+Alacris is currently working mainly on two aspects of DApp development: (1) a portable Domain-Specific Language (DSL) to specify and formally verify entire DApps, and (2) a scaling solution to make DApp performance competitive with centralized applications.
+
+On the first aspect, there are many competitors writing DSLs to write smart contracts—but already, these languages only handle the smart-contract, and not the entire DApp. Any bug in the client or server code, or any discrepancy between that code and the contract, and the users’ assets will disappear as surely as if the bug were in the contract. But no competitor seems to even be aware of the issue. Our DSL, Alacrity, can be used to specify and formally verify contract and client code at the same time, and make sure they are generated in a coherent way, using End-Point Projection, a technique unique to us.
+Almost all of these smart contract languages are chain-specific: Solidity, Simplicity, spedn, Plutus, Marlowe, Michelson, Liquidity, Pact, Scilla, etc. One language, DAML, is portable, but is designed for permissioned blockchains; it is excellent on the financial contract side, but despite being so much better than all other solutions for permissioned blockchains, it is still not at all suited for the adversarial environment of permissionless blockchains. A few of these languages are well-suited to formal verification (e.g. Scilla). Most aren’t, worse or verify the wrong things (Simplicity). A few of these languages allow for a little bit more integration with a language to build client code than others (Plutus, Michelson), but it still remains very low-level and error-prone, checking data types of messages but not the state of the computation.
+Some companies claim to be building an “Operating System”, but what they mean is very different from us. For instance, Zeppelin OS does an amazing job at building tools on the Ethereum ecosystem; but their vision has no cross-chain portability; they write contract and client code separately in Solidity and Javascript; they do not offer deployment services.
+On the formal verification aspect, some companies like CertiK or Runtime Verification have built great tools and framework to verify smart contracts. However, once again they tend to only verify the smart contract, and not the entire DApp. They also seem not to take into account the adversarial aspect of the blockchain in the properties they verify and thus miss key safety properties.
+
+On the second aspect, scaling, there are many projects trying to scale transactions with a “Layer 2” solution. Some of the most interesting competitors include SKALE, Celer, Plasma Group, Matic, xDAI, the Blockstream Liquid Network, the Lightning Network, etc. Other projects try to scale directly on the “Layer 1”, like Ethereum 2, Kadena, Hedera Hashgraph, etc. However, our approach has unique properties unmatched by either category of competitors. Our scaling architecture divides scaling in two tasks: managing side-chains, and ensuring data availability (to prevent “data withholding attacks”). We solve the former task (side-chain management) in a way very similar to Plasma Group (whose better innovation we will copy) or Matic (who is new in the space), which allows for great performance competitive with centralized solutions. We solve the latter task (data availability) with an economic validator network, much like SKALE, xDAI, Liquid and Layer 1 solutions—but our network, which we call the Mutual Knowledge Base (MKB), only needs build a cheaper and simpler result, is easier to scale, and can be shared across all side-chains on all existing Layer 1 networks, instead of being tied to one particular Layer 1 network. That means our MKB offering is universal and can be used for all future scaling solutions, whereas each of our competitors’ solution is specific to one product. Our MKB  therefore has the potential for much better capital efficiency and attracting more capital, yielding greater security than our competitors.
+
+Cosmos is closest to what we think is an operating system with an all-encompassing vision: they want to connect blockchains, they offer a SDK to build entire DApps, they have their own economic validation network (or rather, federation of networks). But we do believe that their approach is flawed both in its computation model and its economic model, one because the other: They gave up on trying to define a DSL for safe DApp development, and instead want to use regular languages like Go; this makes it computationally unsafe for participants to validate applications they do not trust (an unsafe app can hack your computer and steal all your assets), which in turn means that each app will only be validated by a small network with little capital, and the federated network only makes it easy for attackers to capture these small networks one by one. Instead, our vision is to build tools that connect blockchains without sacrificing computational safety, and have a single universal validation network with a large capitalization for economic safety.
+
